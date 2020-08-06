@@ -14,20 +14,22 @@ class Board:
 
 	def getColumn(col):
 		""" returns the values of the column in an array """
-		a=b=c=0
-		if self.layout[0,col] != 1:
-			
-
-		return self.arr[0:3,col]
+		arr1 = self.arr[0:3,col]
+		return arr1[arr1 != 0]
 
 	def getRow(row):
 		# returns the values of the row in an array
-		return self.arr[row,0:12]
+		arr1 = self.arr[row,0:12]
+		return arr1[arr1 != 0]
 
 	def isNumberInColumn(num,col):
-		for x in getColumn(col):
-			if x == num:
+		for y in getColumn(col):
+			if y == num:
 				return True
 		return False
 
 	def isNumberInRow(num,row):
+		for x in getRow(row):
+			if x == num:
+				return True
+		return False
