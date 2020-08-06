@@ -12,6 +12,9 @@ class Board:
 		""" Check if spot on the board is avaible & empty"""
 		return self.layout[y,x] <= 1 and self.arr[y,x] == 0
 
+	def getNumber(y,x):
+		return self.arr[y,x]
+
 	def getColumn(col):
 		""" returns the values of the column in an array """
 		arr1 = self.arr[0:3,col]
@@ -32,4 +35,19 @@ class Board:
 		for x in getRow(row):
 			if x == num:
 				return True
+		return False
+
+	def isColumnFull(col):
+		return getColumn(col).size() == 3
+
+	def isRowFull(row):
+		return getRow(row).size() == 9
+
+	def canThisNumberBePlaced(y, x, num):
+		return isEmpty(y,x) and !isNumberInColumn(num,x) and !isNumberInRow(num,y)
+
+	def placeNumber(y,x,num):
+		if canThisNumberBePlaced(y,x,num):
+			self.arr[y,x] = num
+			return True
 		return False
