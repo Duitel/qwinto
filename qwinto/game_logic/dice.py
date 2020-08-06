@@ -1,12 +1,18 @@
 from random import randint
 
-class Dice:
-	def __init__(color: str):
-		this.color = color
 
-	def throw() -> int:
-		"""Throw the dice.
+class ChosenDices:
+	def __init__(self, red:bool=False, yellow:bool=False, blue:bool=False):
+		red_dice = red
+		yellow_dice = yellow
+		blue_dice = blue
+		self.number_of_dices = red + yellow + blue
+		self.number_times_thrown = 0
 
-		:returns: int, a random number between 1 and 6
+	def throw_dices(self):
+		"""Throw the selected dices and return the sum of the dices.
+
+		:returns: int, the sum of the dice.
 		"""
-		return randint(1,6)
+		self.number_times_thrown += 1
+		return sum(randint(1,6) for _ in range(self.number_of_dices))
