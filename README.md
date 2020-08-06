@@ -1,0 +1,2 @@
+# qwinto
+Qwinto AI challenge
