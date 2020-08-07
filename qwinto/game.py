@@ -4,33 +4,22 @@ from qwinto.GUI.TextGUI import TextGUI
 class Game:
     def __init__(self):
         self.players = []
+        self.active_player = 0
         self.gui = TextGUI()
 
     def start(self):
-        print("Let's play a game of Qwinto")
-        print(
-            r"""
-              ____ 
-             /\' .\    _____ 
-            /: \___\  / .  /\ 
-            \' / . / /____/..\ 
-             \/___/  \'  '\  / 
-                      \'__'\/
-        """)
+        self.gui.startup()
+        self.players = self.gui.setup_game()
 
-        # Set the number of players
         while True:
-            number_players = input("How many players will play?")
-            # convert to integer if inputed a number
-            if number_players.isdecimal():
-                self.number_players = int(number_players.strip())
-                break  # break out of while
-            print("Unallowed input: please input only numbers.")
+            for player in self.players:
+                print(player)
+                self.gui.print_board()
 
-        # Fill the player positions
-        for i in range(self.number_players):
-            self.players.append(input(f"Who will be playin as player {i}"))
+            print()
+            print(f"{self.players[self.active_player]} it is your turn to roll the dice!")
+            self.gui.choose_dice()
 
-        for player in self.players:
-            print(player)
-            self.gui.print_board()
+            self.active_player += 1
+            if self.active_player == len(self.players):
+                self.active_player = 0
