@@ -1,5 +1,6 @@
 from qwinto.game_logic.dice import ChosenDices
 from qwinto.GUI.TextGUI import TextGUI
+from qwinto.game import Game
 
 def main():
 	print("Hello world!")
@@ -12,7 +13,12 @@ def main():
 	print()
 	print("testing GUI")
 	textGUI = TextGUI()
-	
+
+	# Testing game
+	print()
+	print("Testing game")
+	game = Game()
+	game.start()
 
 
 if __name__ == '__main__':

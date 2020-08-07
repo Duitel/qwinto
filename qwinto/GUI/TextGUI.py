@@ -5,7 +5,25 @@ class TextGUI:
 	def __init__(self):
 		self.column_width = 5
 		self.row_length = 10
+		self.num_rows = 6
 		self.print_rows()
+
+	def print_board(self):
+		top_border = "+" + "-" * self.row_length * self.column_width + '+'
+		middle_rows = []
+		for i in range(self.num_rows):
+			middle_rows += ["|" + self.make_content_row(i) + "|"]
+		print("\n".join([top_border] + middle_rows + [top_border]))
+
+	def make_content_row(self, row_index):
+		if row_index == 0:
+			return self.print_red()
+		elif row_index == 1:
+			return self.print_yellow()
+		elif row_index == 2:
+			return self.print_blue()
+		else:
+			return self.print_row()
 
 	def pad_text(self, text:str, pad_to_width:int=None, pad_char:str=" ") -> str:
 		"""Pad a text to the column width.
@@ -33,17 +51,17 @@ class TextGUI:
 
 	def print_red(self) -> None:
 		"""Print the red row."""
-		self.print_row(nummber_left_pading_cells=2, empty_cell=3,bonus_cells=[1,5])
+		return self.print_row(nummber_left_pading_cells=2, empty_cell=3,bonus_cells=[1,5])
 
 	def print_yellow(self) -> None:
 		"""Print the yellow row."""
-		self.print_row(nummber_left_pading_cells=1, empty_cell=5 ,bonus_cells=[7])
+		return self.print_row(nummber_left_pading_cells=1, empty_cell=5 ,bonus_cells=[7])
 
 	def print_blue(self) -> None:
 		"""Print the blue row."""
-		self.print_row(nummber_left_pading_cells=0, empty_cell=4 ,bonus_cells=[2,9])
+		return self.print_row(nummber_left_pading_cells=0, empty_cell=4 ,bonus_cells=[2,9])
 	
-	def print_row(self, nummber_left_pading_cells:int, empty_cell:int, bonus_cells:List[int]) -> None:
+	def print_row(self, nummber_left_pading_cells:int = 0, empty_cell:int = -1, bonus_cells:List[int] = []) -> None:
 		"""Print a row.
 
 		:param left_padding_cells: int, the number of empty cells before the row begins
@@ -59,6 +77,6 @@ class TextGUI:
 		row_string = ''.join(self.pad_text(" ") for _ in range(nummber_left_pading_cells)) + row_string # Add padding cells on the left
 		
 		# Add row
-		print(row_string)
+		return row_string
 
 
